@@ -8,9 +8,9 @@ export enum Scope {
 }
 
 export interface AuthDriver {
-	isAuthorized(request: FastifyRequest, scopes: Scope[]): Promise<boolean>
+	isAuthorized(request: FastifyRequest): Promise<boolean>
 	allowedScopes(request: FastifyRequest): Promise<Scope[]>
-	authorize(request: FastifyRequest, scope: Scope[]): Promise<void> // Throws an error if fails
+	authorize(request: FastifyRequest): Promise<void> // Throws an error if fails
 }
 
 export type Driver = 'BearerToken'

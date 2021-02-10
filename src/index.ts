@@ -2,10 +2,12 @@ import fastifyConstructor from 'fastify'
 import { config } from './config/index.js'
 import { routes } from './routes/index.js'
 import { Storage } from './services/storage/index.js'
+import { Auth } from './services/auth/index.js'
 declare module 'fastify' {
 	interface FastifyInstance {
 		config: typeof config
 		storage: Storage
+		auth: Auth
 	}
 }
 
@@ -17,6 +19,12 @@ const fastify = fastifyConstructor({
 
 // Config
 fastify.decorate('config', config)
+
+// Auth
+const auth = new Auth('BearerToken', {
+	token: '123',
+})
+fastify.decorate('auth', auth)
 
 // Storage
 const storage = new Storage({

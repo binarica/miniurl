@@ -21,13 +21,13 @@ export class Auth implements AuthDriver {
 		return this._driver
 	}
 
-	public async isAuthorized(request: FastifyRequest, scopes: Scope[]): Promise<boolean> {
-		return this._driver.isAuthorized(request, scopes)
+	public async isAuthorized(request: FastifyRequest): Promise<boolean> {
+		return this._driver.isAuthorized(request)
 	}
 	public async allowedScopes(request: FastifyRequest): Promise<Scope[]> {
 		return this._driver.allowedScopes(request)
 	}
-	public authorize(request: FastifyRequest, scopes: Scope[]): Promise<void> {
-		return this._driver.authorize(request, scopes)
+	public authorize(request: FastifyRequest): Promise<void> {
+		return this._driver.authorize(request)
 	}
 }
