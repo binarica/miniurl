@@ -2,7 +2,7 @@ import { FastifyRequest } from 'fastify'
 import { InvalidConfigError } from '../../errors/invalidConfig'
 import { BearerTokenAuth } from './drivers/bearerToken'
 import type { BearerTokenDriverConfig } from './drivers/bearerToken/types'
-import type { DriverConfig, Driver, AuthDriver, Scope } from './types'
+import type { DriverConfig, Driver, AuthDriver } from './types'
 
 export class Auth implements AuthDriver {
 	private _driverName: Driver
@@ -23,9 +23,6 @@ export class Auth implements AuthDriver {
 
 	public async isAuthorized(request: FastifyRequest): Promise<boolean> {
 		return this._driver.isAuthorized(request)
-	}
-	public async allowedScopes(request: FastifyRequest): Promise<Scope[]> {
-		return this._driver.allowedScopes(request)
 	}
 	public authorize(request: FastifyRequest): Promise<void> {
 		return this._driver.authorize(request)
